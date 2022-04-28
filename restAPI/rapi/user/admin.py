@@ -1,9 +1,8 @@
 from django.contrib import admin
 
-from user.views import user
-
-from user.models import User
+from user.models import Users, Product
 
 # Register your models here.
 
-admin.site.register(User)
+admin.site.register(Users)
+admin.site.register(Product)

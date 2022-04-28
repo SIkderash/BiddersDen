@@ -44,7 +44,7 @@ export class SignupComponent implements OnInit {
     }
     this.userService.addUser(data).subscribe(response=>{
       alert(response.toString())
-      this.route.navigate(['/sign-in'])
+      this.route.navigate(['signin'])
     });
   }
 }

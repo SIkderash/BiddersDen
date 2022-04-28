@@ -42,8 +42,9 @@ export class SignInComponent implements OnInit {
       password:this.password
     }
     this.userService.login(data).subscribe(response=>{
-      //alert(response.toString())
-      this.route.navigate(['/'])
+      alert(response.toString())
+      this.route.navigate([''])
+      //console.log()
     });
   
   }

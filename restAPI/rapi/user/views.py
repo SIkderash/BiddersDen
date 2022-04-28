@@ -1,64 +1,98 @@
-from os import stat
-from urllib import request, response
-from django.shortcuts import render
+from itertools import product
 from django.views.decorators.csrf import csrf_exempt
 from rest_framework.parsers import JSONParser
 from django.http.response import JsonResponse
 from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
-from user.models import User
-from user.serializers import UserSerializer, LoginSerializer
-
+from user.models import Product
+from user.serializers import FileSerializer
+from user.serializers import ProductSerializer
+from user.models import Users
+from user.serializers import UsersSerializer, LoginSerializer
+from rest_framework.parsers import FileUploadParser
 from django.core.files.storage import default_storage
-
-from django.http import HttpResponse
-from django.shortcuts import render
+from django.contrib.auth.hashers import make_password, check_password
 from django.http.response import JsonResponse
 from rest_framework.parsers import JSONParser 
 from rest_framework import status
+
+import uuid
+from django.conf import settings
+from django.core.mail import send_mail
 
 from rest_framework.decorators import api_view
 import jwt, datetime
 
 # Create your views here.
 @csrf_exempt
-def user(request,id=0):
-    if request.method=='GET':
-        users = User.objects.all()
-        users_serializer = UserSerializer(users, many=True)
-        return JsonResponse(users_serializer.data, safe=False)
-
-    elif request.method=='POST':                                    #register
+def register(request,id=0):
+    if request.method=='POST':                                    #register
         users_data=JSONParser().parse(request)
-        users_serializer = UserSerializer(data=users_data)
-        if users_serializer.is_valid():
-            users_serializer.save()
-            return JsonResponse("Added Successfully!!" , safe=False)
-        return JsonResponse("Failed to Add.",safe=False)
+        
+        name = users_data['name']
+        phone_number = users_data['phone_number']
+        address = users_data['address']
+        password = users_data['password']
+        username = users_data['username']
+        email = users_data['email']
+        uid = str(uuid.uuid4())
 
-@csrf_exempt 
-def user_detail(request, pk):
-   # find tutorial by pk (id)
-    try: 
-        user = User.objects.get(pk=pk) 
-    except User.DoesNotExist: 
-        return JsonResponse({'message': 'The user does not exist'}, status=status.HTTP_404_NOT_FOUND) 
-    
-    if request.method == 'GET': 
-        users_serializer = UserSerializer(user) 
-        return JsonResponse(users_serializer.data) 
+        #print(password)
+        
+        hashed_password = make_password(password)
 
-    elif request.method == 'PUT': 
-        user_data = JSONParser().parse(request) 
-        users_serializer = UserSerializer(user, data=user_data) 
-        if users_serializer.is_valid(): 
-            users_serializer.save() 
-            return JsonResponse(users_serializer.data) 
-        return JsonResponse(users_serializer.errors, status=status.HTTP_400_BAD_REQUEST) 
-    
-    elif request.method == 'DELETE': 
-        user.delete() 
-        return JsonResponse({'message': 'User was deleted successfully!'}, status=status.HTTP_204_NO_CONTENT)
+        user = Users.objects.filter(username=username).first()
+        if user is not None:
+            return JsonResponse("Username already exists!", safe = False)
+        
+        user = Users.objects.filter(email=email).first()
+        if user is not None:
+            return JsonResponse("This email already has a registered account associated with!", safe = False)
+        
+        Users.objects.create(uid= uid, name=name, phone_number = phone_number, email = email, address = address, username=username, password=hashed_password, isVerified = False)
+
+        sendMail(email, uid)
+        return JsonResponse("Please check your mail to verify your account", safe=False)
+
+@csrf_exempt
+def sendMail(email_to, uid):
+    subject = 'Verify your account'
+    body = 'Please click the link to verify your account http://127.0.0.1:8000/verify/' + uid
+    email_from = settings.EMAIL_HOST_USER
+    recipient = [email_to]
+    send_mail(subject, body , email_from, recipient)
+    print("mail sent")
+
+@csrf_exempt
+def verify(request, uid):
+    print(uid)
+    uid = str(uid)
+    user = Users.objects.filter(uid=uid).first()
+    if user:
+        #print("User exists")
+        if user.isVerified:
+            return JsonResponse('Your account is already verified', safe = False)
+        user.isVerified = True
+        user.save()
+        return JsonResponse('Your account has been verified', safe= False)
+    return JsonResponse('No user found with this email', safe = False)
+
+@csrf_exempt
+@api_view(['POST'])
+def addProduct(request,id=0):
+    if request.method=='POST':                                    #register
+        product_data=JSONParser().parse(request)
+        seller_username = product_data['seller']
+        uid = str(uuid.uuid4())
+        print(seller_username)
+        seller = Users.objects.filter(username=seller_username).first()
+        print(seller)
+        Product.objects.create(uid = uid, product_name = product_data['product_name'], product_category = product_data['product_category'],
+                                base_price = product_data['base_price'], product_defects = product_data['product_defects'],
+                                current_price = product_data['current_price'], seller = seller)
+        return JsonResponse(str(uid), safe = False)
+
+
 
 @api_view(['POST'])
 @csrf_exempt
@@ -73,16 +107,15 @@ def login(request):
             temp_password = str(login_serializer['password'])
             username = temp_username[18:-13]
             password = temp_password[18:-13]
-            print("username is ", username, "password is ", password)
-
-            '''username = request.data('username')
-            password = request.data('password')
-            '''
-            user = User.objects.filter(username=username).first()
+            #print("username is ", username, "password is ", password)
+            
+            user = Users.objects.filter(username=username).first()
 
             if user is None:
                 raise AuthenticationFailed('User not found')
-            elif password!=user.password:
+            elif user.isVerified==False:
+                raise AuthenticationFailed('Please verifiy your account first')
+            elif not check_password(password, user.password):
                 raise AuthenticationFailed('Incorrect Password')
         
             payload = {
@@ -120,8 +153,8 @@ def userView(request):
             raise AuthenticationFailed('Unauthenticated!')
 
         print(payload['username'])
-        user = User.objects.filter(username=payload['username']).first()
-        serializer = UserSerializer(user)
+        user = Users.objects.filter(username=payload['username']).first()
+        serializer = UsersSerializer(user)
         return Response(serializer.data)
 
 @api_view(['POST'])
@@ -139,3 +172,18 @@ def SaveFile(request):
     file=request.FILES['uploadedFile']
     file_name = default_storage.save(file.name,file)
     return JsonResponse(file_name,safe=False)
+
+@api_view(['POST'])
+@csrf_exempt
+def imageUpload(request):
+    print("FILE NAME : " , request.data.get('file_name'))
+    default_storage.save(request.data.get('file_name')+".jpg", request.FILES['image'])
+    return JsonResponse("Photo Uploaded Successfully", safe = False)
+
+
+@csrf_exempt
+def sendProducts(request):
+    if request.method == 'GET':
+        products = Product.objects.all()
+        product_serializer = ProductSerializer(products, many = True)
+        return JsonResponse(product_serializer.data, safe = False)

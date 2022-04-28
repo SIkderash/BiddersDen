@@ -8,14 +8,15 @@ import { User } from "./user";
 })
 
 export class UserService {
-    API_URL = 'http://127.0.0.1:8000'
+    API_URL = 'http://127.0.0.1:8000';
+    user = new User();
     constructor(private http: HttpClient) { }
-    getAllUsers(): Observable<any[]> {
+    /*getAllUsers(): Observable<any[]> {
         return this.http.get<any[]>(this.API_URL + '/users/');
-    }
+    }*/
 
     addUser(val: any) {
-        return this.http.post(this.API_URL + '/users/', val);
+        return this.http.post(this.API_URL + '/register/', val);
     }
 
     deleteUser(val:any){
@@ -35,5 +36,11 @@ export class UserService {
     }
     logout(){
         return this.http.post(this.API_URL + '/logout/', {}, {withCredentials: true})
+    }
+    setUser(user:User){
+        this.user = user;
+    }
+    getUser(){
+        return this.user
     }
 }

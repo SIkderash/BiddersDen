@@ -8,32 +8,32 @@
                   <form class="requires-validation" novalidate>
 
                       <div class="col-md-12">
-                         <input class="form-control" type="text" name="product-name" placeholder="Product Name" required>
+                         <input class="form-control" type="text" name="product-name" placeholder="Product Name" [(ngModel)] = "product.product_name" [ngModelOptions] = "{standalone: true}"required >
                          <div class="valid-feedback">Product name field is valid!</div>
                          <div class="invalid-feedback">Product name field cannot be blank!</div>
                       </div>
 
                       <div class="col-md-12">
-                          <input class="form-control" type="number" name="Base Price" placeholder="Base Price" required>
+                          <input class="form-control" type="number" name="Base Price" placeholder="Base Price" [(ngModel)] = "product.base_price" [ngModelOptions] = "{standalone: true}"required>
                            <div class="valid-feedback">Base Price field is valid!</div>
                            <div class="invalid-feedback">Base Price field cannot be blank!</div>
                       </div>
 
                      <div class="col-md-12">
-                          <select class="form-select mt-3" required>
+                          <select class="form-select mt-3" [(ngModel)] = "product.product_category" [ngModelOptions]= "{standalone: true}" required>
                                 <option selected disabled value="">Categories</option>
                                 <option value="electronics">Electronics</option>
                                 <option value="cloths">Cloths</option>
                                 <option value="foods">Foods</option>
                                 <option value="accessories">Accessories</option>
                          </select>
-                          <div class="valid-feedback">You selected a position!</div>
-                          <div class="invalid-feedback">Please select a position!</div>
+                          <div class="valid-feedback">You selected a Category!</div>
+                          <div class="invalid-feedback">Please select a Category!</div>
                      </div>
 
 
                      <div class="col-md-12">
-                        <input class="form-control" type="text" name="defects" placeholder="Product defects" required>
+                        <input class="form-control" type="text" name="defects" placeholder="Product defects" [(ngModel)] = "product.product_defects" [ngModelOptions] = "{standalone: true}" required>
                          <div class="valid-feedback">Product defects field is valid!</div>
                          <div class="invalid-feedback">Product defects field cannot be blank!</div>
                      </div>
@@ -41,7 +41,7 @@
 
                     <div class="col-md-12 mt-3">
                       Product Photo:
-                      <input class="form-control" type="file" name="photo" placeholder="Choose File" required>
+                      <input class="form-control" type="file" placeholder="Choose File"  (change) = "onChanged($event)"  required>
                          <div class="valid-feedback">Product photos field is valid!</div>
                          <div class="invalid-feedback">Product photos field cannot be blank!</div>
                     </div>
@@ -55,7 +55,7 @@
             
 
                       <div class="form-button mt-3">
-                          <button id="submit" type="submit" class="btn btn-primary">Send</button>
+                          <button id="submit" type="submit" class="btn btn-primary" (click)="addProduct()">Send</button>
                       </div>
                   </form>
               </div>

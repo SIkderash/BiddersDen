@@ -51,8 +51,11 @@
                         href="#" class="dashboard-nav-item"><i class="fas fa-user"></i> Profile </a>
               <div class="nav-item-divider"></div>
               <a
-                        *ngIf = "!authenticated" routerLink="signin" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Login </a>
-                        
+                        *ngIf = "!authenticated" routerLink="signin" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Login 
+              </a>
+              <a
+                        *ngIf = "!authenticated" routerLink="signup" class="dashboard-nav-item"><i class="fas fa-sign-out-alt"></i> Sign Up
+              </a>          
               <a
                         *ngIf = "authenticated"routerLink="signin" class="dashboard-nav-item" (click)="logout()"><i class="fas fa-sign-out-alt"></i> Logout </a>
             </nav>
