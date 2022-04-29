@@ -6,8 +6,8 @@ from rest_framework.exceptions import AuthenticationFailed
 from rest_framework.response import Response
 from user.models import Product
 from user.serializers import FileSerializer
-from user.serializers import ProductSerializer
-from user.models import Users
+from user.serializers import ProductSerializer, BidsSerializer
+from user.models import Users, Bids
 from user.serializers import UsersSerializer, LoginSerializer
 from rest_framework.parsers import FileUploadParser
 from django.core.files.storage import default_storage
@@ -184,6 +184,21 @@ def imageUpload(request):
 @csrf_exempt
 def sendProducts(request):
     if request.method == 'GET':
-        products = Product.objects.all()
+        products = Product.objects.filter(isApproved = True)
         product_serializer = ProductSerializer(products, many = True)
         return JsonResponse(product_serializer.data, safe = False)
+
+@api_view(['POST'])
+@csrf_exempt
+def addBid(request):
+    if request.method == 'POST':
+        data=JSONParser().parse(request)
+        Product.objects.create(productId = data['productId'], bidderId = data['bidderId'], bidAmount = data['bidAmount'])
+        return JsonResponse("bid added successfully", safe = False)
+
+def getBids(request):
+    if request.method == 'GET':
+        data=JSONParser().parse(request)
+        bids = Bids.objects.filter(productId = data['productId'])
+        bid_serializer = BidsSerializer(bids, many = True)
+        return JsonResponse(bid_serializer.data, safe = False)
