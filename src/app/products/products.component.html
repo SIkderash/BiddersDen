@@ -9,7 +9,7 @@
             <div class="card col-md-3">
                 <img src="{{'assets/'+productShow.uid+'.jpg'}}" alt="{{productShow.product_name}}">
                 <h5 style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{productShow.product_name}}</h5>
-                <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{productShow.product_defects}}</p>
+                <p style="white-space: nowrap;overflow: hidden;text-overflow: ellipsis;max-width: 100ch;">{{productShow.product_details}}</p>
                 <p><strong>Price:</strong> ${{productShow.base_price}}</p>
                 <button class="btn btn-primary" (click)="addBid()" >Bid</button>
             </div>
@@ -28,7 +28,7 @@
                         </div>
                         
                     </div>
-                    <p class="product-description">{{productShow.product_defects}}</p>
+                    <p class="product-description">{{productShow.product_details}}</p>
                     <h4 class="price">{{"current price:    $"+productShow.base_price}}</h4>
                     <!-- <p class="vote"><strong>91%</strong> of buyers enjoyed this product! <strong>(87 votes)</strong></p> -->
                     <h5 class="sizes">sizes:

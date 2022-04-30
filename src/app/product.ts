@@ -3,7 +3,7 @@ export class Product{
     product_name : string = ""; 
     product_category : string = "";
     base_price : Number = 0;
-    product_defects : string = "";
+    product_details : string = "";
     current_price : Number = 0;
     recieved_date : string = ""; 
     shipping_date : string = "";

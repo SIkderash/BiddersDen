@@ -88,7 +88,7 @@ def addProduct(request,id=0):
         seller = Users.objects.filter(username=seller_username).first()
         print(seller)
         Product.objects.create(uid = uid, product_name = product_data['product_name'], product_category = product_data['product_category'],
-                                base_price = product_data['base_price'], product_defects = product_data['product_defects'],
+                                base_price = product_data['base_price'], product_details = product_data['product_details'],
                                 current_price = product_data['current_price'], seller = seller)
         return JsonResponse(str(uid), safe = False)
 
@@ -216,3 +216,14 @@ def getPreviousBidsForUser(request):
         bids = Bids.objects.filter(bidderId = data['username'])
         bid_serializer = BidsSerializer(bids, many = True)
         return JsonResponse(bid_serializer.data, safe = False)
+
+
+
+@api_view(['POST'])
+@csrf_exempt
+def searchProduct(request):
+    if request.method == 'POST':
+        data=JSONParser().parse(request)
+        products = Product.objects.filter(product_details__icontains = data ) or Product.objects.filter(product_details__icontains = data )
+        prooduct_serializer = ProductSerializer(products, many = True)
+        return JsonResponse(prooduct_serializer.data, safe = False)

@@ -26,7 +26,7 @@ class Product(models.Model):
     product_name = models.CharField(max_length=300)
     product_category = models.CharField(max_length=300)
     base_price = models.IntegerField()
-    product_defects = models.CharField(max_length=300)
+    product_details = models.CharField(max_length=300)
     current_price = models.IntegerField()
     recieved_date = models.CharField(max_length=100)
     shipping_date = models.CharField(max_length=100)

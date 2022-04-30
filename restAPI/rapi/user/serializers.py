@@ -32,7 +32,7 @@ class ProductSerializer(serializers.ModelSerializer):
                     'product_name',
                   'product_category',
                   'base_price',
-                  'product_defects',
+                  'product_details',
                   'current_price',
                   'recieved_date',
                   'shipping_date',

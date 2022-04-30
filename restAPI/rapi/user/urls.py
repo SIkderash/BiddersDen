@@ -1,5 +1,4 @@
 from django.urls import path, re_path
-from restAPI.rapi.user.views import addBid, getBids
 from user import views
 from django.conf.urls.static import static
 from django.conf import settings
