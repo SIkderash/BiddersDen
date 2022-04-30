@@ -17,7 +17,7 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/assets/'
-MEDIA_ROOT = 'D:/Angular/SPL2/BiddersDen/src/assets'
+MEDIA_ROOT = 'D:/Angular/BiddersDen-master/src/assets'
 #print(BASE_DIR)
 
 EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
