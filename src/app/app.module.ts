@@ -15,6 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms'
 import { UserService } from './user.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FooterComponent } from './footer/footer.component';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     SellComponent,
     SignupComponent,
     SidebarComponent,
+    UserProfileComponent,
+    FooterComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,5 +11,8 @@ urlpatterns=[
     path('verify/<uid>' , views.verify),
     re_path(r'^upload-product-info/$', views.addProduct),
     re_path(r'^imageUpload/$', views.imageUpload),
-    re_path(r'^products/$', views.sendProducts)
+    re_path(r'^products/$', views.sendProducts),
+    re_path(r'^bids/$', views.getPreviousBidsForProduct),
+    re_path(r'^bidhistory/$', views.getPreviousBidsForUser),
+    re_path(r'^addBid/$', views.addBid),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 

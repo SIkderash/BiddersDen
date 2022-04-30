@@ -1,10 +1,5 @@
-body{
-    margin:-5px 280px;
-}
-.carousel-inner{
-    position: relative;
-    background-color: rgb(79, 52, 82);
-}
+
+
 
  .d-block{
      margin: 0px auto;
@@ -12,9 +7,17 @@ body{
      height: 400px;
      position: relative;
  }
+ span{
+     background-color: black;
+ }
+ div.col{
+     background-color: black;
+ }
  
  .top-list{
-    width:200px;height:100px;margin:10px 10px;
+    width: 150px;
+    height:150px;
+    margin:10px 10px;
     position: relative;
     
  }
@@ -31,6 +34,14 @@ body{
  .bid-products{
      height: 200px;
      width: 100%;
+ }
+
+ .card img:hover{
+    transition: 0.3s ease-in-out;
+    transform: scale(1.1);
+ }
+ .card{
+     height: 400px;
  }
  
  

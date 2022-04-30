@@ -8,220 +8,43 @@
 </head>
 <body class="home" >
 
-<div class="album py-5 bg-light">
+<div class="album py-5 bg-light ">
+  <h3 style="text-align: center;margin: 20px;"><b>All Products</b></h3>
   <div class="container">
 
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3">
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/t-shirt2.jpg" alt="laptop" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body col-sm-4">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" >
+      <div *ngFor="let product of products;" >
+      
+      <div class="col" >
+        
+          <div class="card shadow-sm" >
+            <button (click)="showProduct(product)" >
+              <img src="{{'assets/'+product.uid+'.jpg'}}" alt="{{product.product_name}}" class="bid-products">
+            </button>
+            
+            <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
+  
+            <div class="card-body ">
+              <p class="card-text"><small>{{product.product_name}}</small></p>
+              <div class="d-flex justify-content-between align-items-center">
+                <div class="btn-group">
+                  <button  type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
+                  <button (click)="showProduct(product)" type="button" class="btn btn-sm btn-outline-secondary">Product Details</button>
+                </div>
+              <small class="text-muted"><i><b>{{"$"+product.base_price}}</b></i></small>
               </div>
-              <small class="text-muted">Remaining time</small>
             </div>
           </div>
-        </div>
       </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/laptop.png" alt="laptop" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body col-sm-4">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/t-shirt3.jpg" alt="laptop" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body col-sm-4">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/t-shirt1.jpg" alt="laptop" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body col-sm-4">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/laptop.png" alt="laptop" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body col-sm-4">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/laptop.png" alt="laptop" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body col-sm-4">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/t-shirt1.jpg" alt="t-shirt" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body col-sm-4">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/smartphones.jpg" alt="smartphones" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="col">
-        <div class="card shadow-sm">
-          <img src="assets/bike.png" alt="bike" class="bid-products">
-          <!-- <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="assets/laptop.png" role="img" aria-label="Placeholder: laptops " preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"></rect><text x="50%" y="50%" fill="#eceeef" dy=".3em">Laptops</text></svg> -->
-
-          <div class="card-body">
-            <p class="card-text">Bid your desired product</p>
-            <div class="d-flex justify-content-between align-items-center">
-              <div class="btn-group">
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
-                <button type="button" class="btn btn-sm btn-outline-secondary">Bid History</button>
-              </div>
-              <small class="text-muted">Remaining time</small>
-            </div>
-          </div>
-        </div>
-      </div>
+      
+    </div>  
+    
+      
     </div>
   </div>
 </div>
 
-<app-products></app-products>
-
-<footer class="bg-dark text-center text-white">
-  <!-- Grid container -->
-  <div class="container p-4 pb-0">
-    <!-- Section: Form -->
-    <section class="">
-      <form action="">
-        <!--Grid row-->
-        <div class="row d-flex justify-content-center">
-          <!--Grid column-->
-          <div class="col-auto">
-            <p class="pt-2">
-              <strong>Sign up for our newsletter</strong>
-            </p>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-md-5 col-12">
-            <!-- Email input -->
-            <div class="form-outline form-white mb-4">
-              <input type="email" id="form5Example29" class="form-control" />
-              <label class="form-label" for="form5Example29">Email address</label>
-            </div>
-          </div>
-          <!--Grid column-->
-
-          <!--Grid column-->
-          <div class="col-auto">
-            <!-- Submit button -->
-            <button type="submit" class="btn btn-outline-light mb-4">
-              Subscribe
-            </button>
-          </div>
-          <!--Grid column-->
-        </div>
-        <!--Grid row-->
-      </form>
-    </section>
-    <!-- Section: Form -->
-  </div>
-  <!-- Grid container -->
-
-  <!-- Copyright -->
-  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
-    © 2020 Copyright:
-    <a class="text-white" href="https://mdbootstrap.com/">MDBootstrap.com</a>
-  </div>
-  <!-- Copyright -->
-</footer>
+<app-footer></app-footer>
 
 </body>
 </html>

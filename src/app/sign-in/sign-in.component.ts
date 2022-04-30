@@ -32,7 +32,7 @@ export class SignInComponent implements OnInit {
   }
  
   login(){
-    console.log("loggin in")
+    console.log("logging in")
     var data = {
       //name:this.name,
       //phone_number:this.phone_number,
@@ -42,9 +42,8 @@ export class SignInComponent implements OnInit {
       password:this.password
     }
     this.userService.login(data).subscribe(response=>{
-      alert(response.toString())
-      this.route.navigate([''])
-      //console.log()
+      //alert(response.toString())
+      this.route.navigate(['/'])
     });
   
   }

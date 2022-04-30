@@ -1,7 +1,9 @@
 from rest_framework import serializers
+from user.models import Bids
 from user.models import Product
 from user.models import Users
 from user.models import Users, File, credentials
+from user.models import Bids
     
 class LoginSerializer(serializers.ModelSerializer):
     class Meta:
@@ -14,8 +16,7 @@ class UsersSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Users
-        fields = (
-                    'name',
+        fields = ('name',
                   'phone_number',
                   'email',
                   'address',
@@ -27,8 +28,8 @@ class ProductSerializer(serializers.ModelSerializer):
     class Meta:
         model = Product
         fields = (
-                   'uid',
-                  'product_name',
+                    'uid',
+                    'product_name',
                   'product_category',
                   'base_price',
                   'product_defects',
@@ -41,8 +42,15 @@ class ProductSerializer(serializers.ModelSerializer):
                   'buyerID',
                   )
 
-
 class FileSerializer(serializers.ModelSerializer):
     class Meta:
         model = File
         fields = "__all__"
+
+class BidsSerializer(serializers.ModelSerializer):
+
+    class Meta:
+        model = Bids
+        fields = ('productId',
+                  'bidderId',
+                  'bidAmount',)

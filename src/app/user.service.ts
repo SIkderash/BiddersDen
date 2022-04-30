@@ -8,8 +8,11 @@ import { User } from "./user";
 })
 
 export class UserService {
-    API_URL = 'http://127.0.0.1:8000';
-    user = new User();
+
+    user!:any;
+    loggedIn = false;
+
+    API_URL = 'http://127.0.0.1:8000'
     constructor(private http: HttpClient) { }
     /*getAllUsers(): Observable<any[]> {
         return this.http.get<any[]>(this.API_URL + '/users/');
@@ -19,28 +22,31 @@ export class UserService {
         return this.http.post(this.API_URL + '/register/', val);
     }
 
-    deleteUser(val:any){
+    /*deleteUser(val:any){
         return this.http.delete(this.API_URL + '/users/'+ val);
-    }
+    }*/
     
-    uploadPhoto(val:any){
+    /*uploadPhoto(val:any){
         return this.http.post(this.API_URL+'/SaveFile/', val);
-    }
+    }*/
+
     login(val:any){
         return this.http.post(this.API_URL +  '/login/', val, {
             withCredentials: true
         });
     }
     authenticate(){
-        return this.http.get(this.API_URL + '/user/', {withCredentials: true});
+        return this.user = this.http.get(this.API_URL + '/user/', {withCredentials: true});
     }
+    
     logout(){
         return this.http.post(this.API_URL + '/logout/', {}, {withCredentials: true})
     }
-    setUser(user:User){
+    setUser(user : User):void{
         this.user = user;
+        console.log(this.user)
     }
-    getUser(){
-        return this.user
+    getUser():User{
+        return this.user;
     }
 }

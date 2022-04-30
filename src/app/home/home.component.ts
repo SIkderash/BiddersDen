@@ -3,6 +3,7 @@ import { UserService } from '../user.service';
 import { Emitters } from '../emiiters/Emitter';
 import { ProductService } from '../product.service';
 import { Product } from '../product';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-home',
@@ -12,9 +13,9 @@ import { Product } from '../product';
 export class HomeComponent implements OnInit {
 
   userdata!: any;
-  
-  products:Product[] = [];
-  constructor(private userService:UserService, private service: ProductService) { }
+  products: Product[]=[];
+  link:string[] = [];
+  constructor(private userService:UserService,private productService:ProductService,private router:Router) { }
 
   ngOnInit(): void {
     this.authenticate();
@@ -24,21 +25,24 @@ export class HomeComponent implements OnInit {
     this.userService.authenticate().subscribe(response => {
       this.userdata = response;
       this.userService.setUser(this.userdata);
-      alert("Logged In as .. " + String(this.userdata.username) )
+      //alert("Logged In as .. " + String(this.userdata.username) )
       Emitters.authEmitter.emit(true);
     },
     err => {
-      alert("not Logged In")
+      //alert("not Logged In")
       Emitters.authEmitter.emit(false);
     }
   );
   }
-
   getProducts(){
-    this.service.getAllProducts().subscribe(data=>{
+    this.productService.getAllProducts().subscribe(data=>{
       this.products = data;
-      console.log(this.products);
     });
+  }
+
+  showProduct(product:Product){
+    this.productService.setProductToBeShown(product);
+    this.router.navigate(['product']);
   }
 
 }
