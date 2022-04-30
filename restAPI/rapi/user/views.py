@@ -224,6 +224,7 @@ def getPreviousBidsForUser(request):
 def searchProduct(request):
     if request.method == 'POST':
         data=JSONParser().parse(request)
-        products = Product.objects.filter(product_details__icontains = data ) or Product.objects.filter(product_details__icontains = data )
+        searchData = " " + data['text'] + " " 
+        products = Product.objects.filter(product_details__icontains = searchData)| Product.objects.filter(product_details__icontains = searchData )
         prooduct_serializer = ProductSerializer(products, many = True)
         return JsonResponse(prooduct_serializer.data, safe = False)

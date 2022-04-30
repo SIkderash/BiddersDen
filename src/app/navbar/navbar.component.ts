@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   click = 1;
   user : User = new User();
   products : Product[] = []
-  searchData = "";
+  searchData = { text : ""};
   
   /*menuButtonClickEvent() {
     if (this.click == 0) this.click = 1;
