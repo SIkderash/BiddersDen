@@ -25,7 +25,7 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_USE_TLS = True
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'sikderash@gmail.com'
-EMAIL_HOST_PASSWORD = 'imoutfromeverything'
+EMAIL_HOST_PASSWORD = 'Allahknowsbest'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/

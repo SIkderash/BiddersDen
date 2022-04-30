@@ -42,4 +42,7 @@ setBid(data:any){
 getBids(data:any): Observable<any[]>{
   return this.http.post<any[]>(this.API_URL + '/bids/', data);
 }
+searchProducts(data:any){
+  return this.http.post<any[]>(this.API_URL + '/searchProducts/', data);
+}
 }
