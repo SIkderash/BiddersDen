@@ -79,8 +79,10 @@
 
   <div class="nav-middle flex-div">
     <div class="search-box flex-div">
-      <input type="text" placeholder="Search" />
+      <input type="text" placeholder="Search" [(ngModel)] = "searchData" [ngModelOptions] = "{standalone: true}"/>
+      <a (click)="search()">
       <img src="assets/search.png" alt="" />
+      </a>
       <!--img src="assets/images/voice-search.png" class="mic-icon" alt=""> -->
     </div>
   </div>

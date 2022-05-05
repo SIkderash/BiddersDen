@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Bid } from '../bid';
 import { Product } from '../product';
 import { ProductService } from '../product.service';
@@ -15,7 +16,8 @@ export class ProductsComponent implements OnInit {
   user = this.userService.getUser()
   newBid = new Bid();
   currentBids : Bid[] = [];
-  constructor(private productService:ProductService, private userService: UserService) { }
+  
+  constructor(private productService:ProductService, private userService: UserService,private router:Router) { }
 
   ngOnInit(): void {
     this.getBids();
@@ -34,6 +36,11 @@ export class ProductsComponent implements OnInit {
       this.currentBids = data;
       console.log(this.currentBids);
     });
+  }
+  showBidProduct()
+  {
+    this.productService.setBidProductToBeShown(this.productShow);
+    this.router.navigate(['bid']);
   }
 
   

@@ -9,23 +9,13 @@ import { Observable } from 'rxjs';
 export class ProductService {
 
   products: Product[] = [] 
-API_URL = 'http://127.0.0.1:8000';
-productToBeShown  = new Product();
+  API_URL = 'http://127.0.0.1:8000';
+  productToBeShown  = new Product();
+  bidProductToBeShown  = new Product();
 
 constructor(private http: HttpClient) { }
 
-getProducts():Product[]{
-  return this.products;
-}
-setProductToBeShown(product:Product){
-  this.productToBeShown=product;
-}
-getProductToBeShown():Product{
-  return this.productToBeShown;
-}
-showProduct(){
-  console.log("product: "+this.productToBeShown);
-}
+
 
 uploadProductImage(image:any) {
   return this.http.post(this.API_URL + '/imageUpload/', image);
@@ -45,4 +35,25 @@ getBids(data:any): Observable<any[]>{
 searchProducts(data:any){
   return this.http.post<any[]>(this.API_URL + '/searchProducts/', data);
 }
+
+getProducts():Product[]{
+  return this.products;
+}
+setBidProductToBeShown(product:Product){
+  this.bidProductToBeShown=product;
+}
+setProductToBeShown(product:Product){
+  this.productToBeShown=product;
+}
+getProductToBeShown():Product{
+  return this.productToBeShown;
+}
+getBidProductToBeShown():Product{
+  return this.bidProductToBeShown;
+}
+showProduct(){
+  console.log("product: "+this.productToBeShown);
+}
+
+
 }
