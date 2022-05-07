@@ -17,15 +17,8 @@ import os
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 MEDIA_URL = '/assets/'
-MEDIA_ROOT = 'D:/Angular/BiddersDen-master/src/assets'
+MEDIA_ROOT = 'D:/CODES/Angular/BiddersDen-master/src/assets'
 #print(BASE_DIR)
-
-EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
-EMAIL_HOST = 'smtp.gmail.com'
-EMAIL_USE_TLS = True
-EMAIL_PORT = 587
-EMAIL_HOST_USER = 'sikderash@gmail.com'
-EMAIL_HOST_PASSWORD = 'Allahknowsbest'
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.0/howto/deployment/checklist/
@@ -139,3 +132,11 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'sikderash@gmail.com'
+EMAIL_HOST_PASSWORD = 'Allahknowsbest'
