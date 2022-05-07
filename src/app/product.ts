@@ -2,9 +2,9 @@ export class Product{
     uid : string = "";
     product_name : string = ""; 
     product_category : string = "";
-    base_price : Number = 0;
+    base_price : number = 0;
     product_details : string = "";
-    current_price : Number = 0;
+    current_price : number = 0;
     recieved_date : string = ""; 
     shipping_date : string = "";
     delivered_date : string = "";

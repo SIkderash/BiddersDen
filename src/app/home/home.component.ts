@@ -45,4 +45,9 @@ export class HomeComponent implements OnInit {
     this.router.navigate(['product']);
   }
 
+  showBidProduct(product:Product){
+    this.productService.setBidProductToBeShown(product);
+    this.router.navigate(['bid']);
+  }
+
 }

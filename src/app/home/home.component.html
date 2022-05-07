@@ -28,10 +28,10 @@
               <p class="card-text"><small>{{product.product_name}}</small></p>
               <div class="d-flex justify-content-between align-items-center">
                 <div class="btn-group">
-                  <button  type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
+                  <button (click)="showBidProduct(product)"  type="button" class="btn btn-sm btn-outline-secondary">Bid</button>
                   <button (click)="showProduct(product)" type="button" class="btn btn-sm btn-outline-secondary">Product Details</button>
                 </div>
-              <small class="text-muted"><i><b>{{"$"+product.base_price}}</b></i></small>
+              <small class="text-muted"><i><b>{{"BDT "+product.base_price}}</b></i></small>
               </div>
             </div>
           </div>

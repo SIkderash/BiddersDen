@@ -17,6 +17,7 @@ import { UserService } from './user.service';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FooterComponent } from './footer/footer.component';
+import { BidsComponent } from './bids/bids.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { FooterComponent } from './footer/footer.component';
     SidebarComponent,
     UserProfileComponent,
     FooterComponent,
+    BidsComponent,
   ],
   imports: [
     BrowserModule,
