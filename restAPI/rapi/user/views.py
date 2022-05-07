@@ -89,7 +89,7 @@ def addProduct(request,id=0):
         print(seller)
         Product.objects.create(uid = uid, product_name = product_data['product_name'], product_category = product_data['product_category'],
                                 base_price = product_data['base_price'], product_details = product_data['product_details'],
-                                current_price = product_data['current_price'], seller = seller)
+                                current_price = product_data['current_price'], time_to_bid = product_data['time_to_bid'], seller = seller)
         return JsonResponse(str(uid), safe = False)
 
 
@@ -195,7 +195,13 @@ def addBid(request):
     if request.method == 'POST':
         data=JSONParser().parse(request)
         Bids.objects.create(productId = data['productId'], bidderId = data['username'], bidAmount = data['bidAmount'])
-        return JsonResponse("bid added successfully", safe = False)
+        product = Product.objects.get(uid = data['productId'])
+        if product:
+            product.current_price = data['bidAmount']
+            product.save()
+            return JsonResponse("bid added successfully", safe = False)
+        else :
+            return JsonResponse("Product Not Found", safe = False)
 
 @api_view(['POST'])
 @csrf_exempt

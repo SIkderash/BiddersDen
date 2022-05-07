@@ -34,6 +34,7 @@ class ProductSerializer(serializers.ModelSerializer):
                   'base_price',
                   'product_details',
                   'current_price',
+                  'time_to_bid',
                   'recieved_date',
                   'shipping_date',
                   'delivered_date',

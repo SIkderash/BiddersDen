@@ -20,7 +20,7 @@ export class BidsComponent implements OnInit {
   
   productShow = this.productService.getBidProductToBeShown();
   
-  minBid = Math.max(this.productShow.base_price/100,5);
+  minBid = Math.max(this.productShow.base_price,5);
   constructor(private productService:ProductService,private userService:UserService) { 
     
     this.productShow.current_price = this.productShow.base_price;
@@ -49,8 +49,6 @@ export class BidsComponent implements OnInit {
     console.log("Bid price: "+this.bid_price);
     console.log("current price: "+this.productShow.current_price);
     console.log("today : "+this.current_date);
-    
-    
   }
 
   getBids(){

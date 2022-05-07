@@ -12,14 +12,18 @@ import { UserService } from '../user.service';
   styleUrls: ['./sell.component.css']
 })
 export class SellComponent implements OnInit {
+  
   product = new Product();
   seller = new User();
   image:any
   uid:any
+
   constructor(private userService : UserService, private productService: ProductService, private route:Router) { }
 
   ngOnInit(): void {
+  
   }
+
   onChanged(event:any){
     this.image = event.target.files[0];
   }
@@ -34,13 +38,12 @@ export class SellComponent implements OnInit {
 
     this.productService.addProduct(this.product).subscribe(response=>{
       this.uid = response.toString()
-      alert(this.uid)
       this.uploadata.append('image', this.image);
       this.uploadata.append('file_name', this.uid);
-      console.log(this.uploadata)
       this.uploadPhoto()
     });
   }
+
   uploadPhoto(){
     this.productService.uploadProductImage(this.uploadata).subscribe(response=>{
       alert(response.toString())

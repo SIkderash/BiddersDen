@@ -28,6 +28,7 @@ class Product(models.Model):
     base_price = models.IntegerField()
     product_details = models.CharField(max_length=300)
     current_price = models.IntegerField()
+    time_to_bid = models.IntegerField()
     recieved_date = models.CharField(max_length=100)
     shipping_date = models.CharField(max_length=100)
     delivered_date = models.CharField(max_length=100)

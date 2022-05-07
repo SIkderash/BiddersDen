@@ -18,6 +18,12 @@
                              <div class="valid-feedback">Base Price field is valid!</div>
                              <div class="invalid-feedback">Base Price field cannot be blank!</div>
                         </div>
+
+                        <div class="col-md-12">
+                            <input class="form-control" type="number" name="Bidding Time" placeholder="Enter Bidding Time - number of days" [(ngModel)] = "product.time_to_bid" [ngModelOptions] = "{standalone: true}"required>
+                             <div class="valid-feedback"> This Field is valid!</div>
+                             <div class="invalid-feedback"> This field cannot be blank!</div>
+                        </div>
   
                        <div class="col-md-12">
                             <select class="form-select mt-3" [(ngModel)] = "product.product_category" [ngModelOptions]= "{standalone: true}" required>
