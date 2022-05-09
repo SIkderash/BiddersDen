@@ -18,6 +18,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { BidsComponent } from './bids/bids.component';
+import { ChatComponent } from './chat/chat.component';
 
 @NgModule({
   declarations: [
@@ -33,6 +34,7 @@ import { BidsComponent } from './bids/bids.component';
     UserProfileComponent,
     FooterComponent,
     BidsComponent,
+    ChatComponent,
   ],
   imports: [
     BrowserModule,

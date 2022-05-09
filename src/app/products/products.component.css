@@ -26,8 +26,10 @@
 
 .card {
   padding: 18px;
-  margin: 28px;
+  margin-top: 15px;
   width: 44%;
+  margin-bottom: 28px;
+  border-radius: 0%;
 }
 
 .card img {
@@ -160,10 +162,14 @@
 
 
 div.detail-card{
-    width: 55%;
-    box-sizing: border-box;
-    border-radius: 1%;
-    border: cadetblue;
-    flex: 1;
-    padding-top: 2%;
+  width: 55%;
+  box-sizing: border-box;
+  border-radius: 0%;
+  flex: 1;
+  padding-top: 2%;
+  background-color: #fff;
+  border: 1px solid rgba(0,0,0,.125);
+  
+  margin-top: 15px;
+  margin-bottom: 28px;
 }
