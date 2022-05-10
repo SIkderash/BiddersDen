@@ -9,9 +9,15 @@ import { Observable } from 'rxjs';
 export class ProductService {
 
   products: Product[] = [] 
+<<<<<<< Updated upstream
   API_URL = 'http://127.0.0.1:8000';
   productToBeShown  = new Product();
   bidProductToBeShown  = new Product();
+=======
+API_URL = 'http://127.0.0.1:8000';
+productToBeShown  = new Product();
+bidProductToBeShown = new Product();
+>>>>>>> Stashed changes
 
 constructor(private http: HttpClient) { }
 
@@ -35,6 +41,7 @@ getBids(data:any): Observable<any[]>{
 searchProducts(data:any){
   return this.http.post<any[]>(this.API_URL + '/searchProducts/', data);
 }
+<<<<<<< Updated upstream
 
 getProducts():Product[]{
   return this.products;
@@ -55,5 +62,13 @@ showProduct(){
   console.log("product: "+this.productToBeShown);
 }
 
+=======
+setBidProductToBeShown(product:Product){
+  this.bidProductToBeShown=product;
+}
+getBidProductToBeShown():Product{
+  return this.bidProductToBeShown;
+}
+>>>>>>> Stashed changes
 
 }

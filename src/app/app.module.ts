@@ -18,7 +18,10 @@ import { SidebarComponent } from './sidebar/sidebar.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FooterComponent } from './footer/footer.component';
 import { BidsComponent } from './bids/bids.component';
+<<<<<<< Updated upstream
 import { ChatComponent } from './chat/chat.component';
+=======
+>>>>>>> Stashed changes
 
 @NgModule({
   declarations: [
@@ -34,7 +37,10 @@ import { ChatComponent } from './chat/chat.component';
     UserProfileComponent,
     FooterComponent,
     BidsComponent,
+<<<<<<< Updated upstream
     ChatComponent,
+=======
+>>>>>>> Stashed changes
   ],
   imports: [
     BrowserModule,

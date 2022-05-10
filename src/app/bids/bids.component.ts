@@ -10,6 +10,7 @@ import { UserService } from '../user.service';
 })
 export class BidsComponent implements OnInit {
 
+<<<<<<< Updated upstream
   clicked : number = 0;
   bid_price : number = 0;
   bids : number[] = [];
@@ -62,6 +63,37 @@ export class BidsComponent implements OnInit {
     this.currentBids = this.currentBids.sort((a, b) => (a.bidAmount > b.bidAmount) ? -1 : 1);
     console.log(JSON.stringify(this.currentBids));
 
+=======
+
+  bid_price:number = 0;
+  newBid = new Bid();
+  user = this.userService.getUser();
+
+  productShow = this.productService.getBidProductToBeShown();
+  constructor(private productService:ProductService,private userService : UserService) { }
+
+  ngOnInit(): void {
+  }
+
+  make_bid()
+  {
+    
+    this.newBid.username = this.user.username;
+    this.newBid.productId = this.productShow.uid;
+
+    if(this.newBid.bidAmount<=this.productShow.base_price)
+    {
+      console.log("You can't bid less than current price");
+    }
+    else
+      this.productShow.base_price = this.newBid.bidAmount;
+    
+    this.productService.setBid(this.newBid).subscribe(response=>{
+      alert(response.toString())
+    });
+    
+    
+>>>>>>> Stashed changes
   }
 
 }
