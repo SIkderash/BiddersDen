@@ -57,8 +57,9 @@ export class NavbarComponent implements OnInit {
   }
   
   search(){
+    var searchText = { text : this.searchData}
     console.log(this.searchData);
-    this.productService.searchProducts(this.searchData).subscribe(data=>{
+    this.productService.searchProducts(searchText).subscribe(data=>{
       this.products = data;
     });
     console.log(this.products)
