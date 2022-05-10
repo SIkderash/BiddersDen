@@ -74,13 +74,18 @@
  <div class="container emp-profile">
              
                  <div class="row" >
-                     <div class="col-md-4">
+                     <div class="card col-md-4">
                          <div class="profile-img">
                              <img src="{{'assets/'+productShow.uid+'.jpg'}}" alt="{{productShow.product_name}}"/>
                              
                          </div>
+                         <div class="profile-work">
+                          <h6>
+                              <b>{{productShow.product_details}}</b>
+                          </h6>
+                         </div>
                      </div>
-                     <div class="col-md-8">
+                     <div class="detail-card col-md-8">
                          <div class="profile-head">
                                      <h5>
                                          {{productShow.product_name}}
@@ -97,25 +102,8 @@
                                 <i> 2hrs 25min 5s</i>
                             </div>
                             
-                        </div>
-                     </div>
-                     
-                 </div>
-                 <div class="row">
-                     <div class="col-md-4">
-                         <div class="profile-work">
-                            <h6>
-                                <b>{{productShow.product_details}}</b>
-                            </h6>
-                            
-                             
-                         </div>
-                     </div>
-
-                    
-
-                     <div class="col-md-8">
-                         <div class="tab-content profile-tab" id="myTabContent">
+                          </div>
+                          <div class="tab-content profile-tab" id="myTabContent">
 
                             <div class="input-group mb-3">
                                 <div class="input-group-prepend">
@@ -133,37 +121,38 @@
                                     Place Bid
                                 </button>
                             </div> 
-
+                            <div class="user-bids">
+                              <button (click)="getBids()" class="btn btn-primary">
+                                Show Top Bids
+                            </button>
+                            <br>
+                            <table *ngIf="clicked" class="table table-hover table-dark">
+                               <thead>
+                                 <tr>
+                                   <th scope="col">Serial No.</th>
+                                   <th scope="col">Bidder</th>
+                                   <th scope="col">Amount</th>
+                                   
+                                 </tr>
+                               </thead>
+                               <tbody>
+                                 <tr *ngFor="let data of currentBids;let i = index;">
+                                   <th scope="row">{{i}}</th>
+                                   <td>{{data.username}}</td>
+                                   <td>BDT{{data.bidAmount}}</td>
+                                   
+                                 </tr>
+                                 
+                               </tbody>
+                             </table>
+                            </div>
                              
                          </div>
-                         <br>
-                         <button (click)="getBids()" class="top-bids btn-primary">
-                             Show Top Bids
-                         </button>
-                         <br>
-                         <table *ngIf="clicked" class="table table-hover table-dark">
-                            <thead>
-                              <tr>
-                                <th scope="col">Serial No.</th>
-                                <th scope="col">Bidder</th>
-                                <th scope="col">Amount</th>
-                                
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr *ngFor="let data of currentBids;let i = index;">
-                                <th scope="row">{{i}}</th>
-                                <td>{{data.username}}</td>
-                                <td>BDT{{data.bidAmount}}</td>
-                                
-                              </tr>
-                              
-                            </tbody>
-                          </table>
                      </div>
-
+                     
                  </div>
+                
                       
          </div>
-
+<app-footer></app-footer>
 

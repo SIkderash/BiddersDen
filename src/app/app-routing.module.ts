@@ -11,6 +11,7 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProductsComponent } from './products/products.component';
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { BidsComponent } from './bids/bids.component';
+import { ChatComponent } from './chat/chat.component';
 
 const routes: Routes = [
   {path:'',component:HomeComponent},
@@ -21,7 +22,8 @@ const routes: Routes = [
   {path:'signup',component:SignupComponent},
   {path:'product',component:ProductsComponent},
   {path: 'userprofile',component:UserProfileComponent},
-  {path: 'bid',component:BidsComponent}
+  {path: 'bid',component:BidsComponent},
+  {path:'chat',component:ChatComponent}
 ];
 
 @NgModule({

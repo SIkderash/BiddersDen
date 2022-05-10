@@ -17,7 +17,7 @@ export class NavbarComponent implements OnInit {
   click = 1;
   user : User = new User();
   products : Product[] = []
-  searchData = { text : ""};
+  searchData!:String;
   
   /*menuButtonClickEvent() {
     if (this.click == 0) this.click = 1;
@@ -57,6 +57,7 @@ export class NavbarComponent implements OnInit {
   }
   
   search(){
+    console.log(this.searchData);
     this.productService.searchProducts(this.searchData).subscribe(data=>{
       this.products = data;
     });
